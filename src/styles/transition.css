@@ -1,0 +1,187 @@
+.my-toast {
+  animation: toastIn .28s ease both;
+}
+
+@keyframes toastIn {
+  from { 
+    opacity: 0; transform: translateY(-10px) scale(.98); 
+  }
+
+  to { 
+    opacity: 1; transform: translateY(0) scale(1); 
+  }
+}
+
+.my-modal-backdrop {
+  opacity: 0;
+  transition: opacity .22s ease;
+}
+.my-modal-backdrop.open {
+  opacity: 1;
+}
+.my-modal-card {
+  transform: translateY(18px) scale(.98);
+  opacity: 0;
+  transition: transform .22s ease, opacity .22s ease;
+}
+.my-modal-card.open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.my-row-action-btn,
+.my-dash-chip-btn,
+.my-icon-button,
+.my-language-trigger,
+.my-login-btn,
+.my-sidebar-item,
+.my-dashboard-sidebar-item,
+.my-mobile-nav-link,
+.my-search-input input,
+.my-field-group input,
+.my-field-group textarea,
+.my-modern-cell.editable-cell input,
+.my-mobile-edit-field input {
+  transition: all .18s ease;
+}
+
+.my-row-action-btn:hover,
+.my-dash-chip-btn:hover,
+.my-icon-button:hover,
+.my-language-trigger:hover,
+.my-login-btn:hover {
+  transform: translateY(-1px);
+}
+
+.my-editable-table-head-grid {
+  grid-template-columns: 28px 160px 1.2fr 130px 130px 150px 130px 1fr 160px;
+}
+
+.my-editable-product-row {
+  grid-template-columns: 28px 160px 1.2fr 130px 130px 150px 130px 1fr 160px;
+}
+
+.my-editable-cell {
+  padding: 8px 10px;
+}
+
+.my-editable-cell input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  outline: none;
+  font-size: 13px;
+  min-height: 36px;
+}
+
+.my-editable-stack {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.my-editable-stack span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.my-table-row-actions {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.my-row-action-btn.update,
+.my-row-action-btn.delete {
+  min-height: 76px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 0 16px;
+}
+
+.my-row-action-btn.update {
+  color: white !important;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal)) !important;
+}
+
+.my-row-action-btn.delete {
+  color: #fff !important;
+  background: linear-gradient(135deg, #ef4444, #f97316) !important;
+}
+
+.my-mobile-edit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.my-mobile-edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.my-mobile-edit-field.full {
+  grid-column: 1 / -1;
+}
+
+.my-mobile-edit-field label {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.my-mobile-edit-field input {
+  min-height: 42px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  color: var(--text);
+  padding: 0 12px;
+  outline: none;
+}
+
+.my-mobile-card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.my-mobile-card-actions .row-action-btn {
+  flex: 1;
+  min-height: 44px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .my-editable-table-head-grid,
+  .my-editable-product-row {
+    grid-template-columns: 28px 150px 1.1fr 120px 120px 140px 120px 1fr 150px;
+  }
+}
+
+@media (max-width: 760px) {
+  .my-mobile-edit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .my-mobile-card-actions {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 520px) {
+  .my-mobile-card-actions {
+    flex-direction: column;
+  }
+
+  .my-mobile-card-actions .row-action-btn {
+    width: 100%;
+  }
+}

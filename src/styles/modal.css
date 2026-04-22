@@ -1,0 +1,65 @@
+.my-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.54);
+  display: grid;
+  place-items: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.my-modal-card {
+  width: min(760px, 100%);
+  border-radius: 28px;
+  padding: 24px;
+}
+
+.my-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.my-modal-header h3 {
+  margin: 0 0 4px;
+  font-size: 28px;
+}
+
+.my-modal-header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.my-modal-close {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.my-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.my-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.span-2 {
+  grid-column: span 2;
+}
+
+.my-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}

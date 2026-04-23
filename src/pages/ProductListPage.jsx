@@ -1,7 +1,7 @@
 import "@/styles/dashboard.css";
 
 import { useEffect, useRef, useState } from "react";
-import { languages } from "../data/globaldata";
+import { languages } from "@/data/globaldata";
 import {
   FaFileInvoice,
   FaUsers,
@@ -24,12 +24,12 @@ import {
   FaTimes
 } from "react-icons/fa";
 import Toast from "@/components/Toast";
-import ProductListHeader from "../components/productlist/ProductListHeader";
-import ProductListSideBar from "../components/productlist/ProductListSideBar";
-import ProductListToolBar from "../components/productlist/ProductListToolBar";
-import ProductListTableDesktop from "../components/productlist/ProductListTableDesktop";
-import ProductListTableTablet from "../components/productlist/ProductListTableTablet";
-import ProductListTableMobile from "../components/productlist/ProductListTableMobile";
+import ProductListHeader from "@/components/productlist/ProductListHeader";
+import ProductListSideBar from "@/components/productlist/ProductListSideBar";
+import ProductListToolBar from "@/components/productlist/ProductListToolBar";
+import ProductListTableDesktop from "@/components/productlist/ProductListTableDesktop";
+import ProductListTableTablet from "@/components/productlist/ProductListTableTablet";
+import ProductListTableMobile from "@/components/productlist/ProductListTableMobile";
 
 const menuItems = [
   { label: "Invoices", icon: <FaFileInvoice />, active: false },
@@ -312,7 +312,6 @@ function ProductListPage() {
     };
 
     useEffect(() => {
-        showToast("Login! Welcome to Product List.", "success");
         const handleClickOutside = (event) => {
             if (languageRef.current && !languageRef.current.contains(event.target)) {
                 setLanguageOpen(false);

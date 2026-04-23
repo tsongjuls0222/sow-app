@@ -1,9 +1,24 @@
 import { FaEye } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/context/AuthContext";
+import { useState, useRef, useEffect } from "react";
 
 function LoginForm({handleLogin}) {
-  const handleSubmit = (e) => {
+  const navigate        = useNavigate();
+  const { login }       = useAuth();
+  const [form, setForm] = useState({
+    email: "",
+    password: ""
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleLogin();
+    try {
+      const log = await login(form.email, form.password);
+      // navigate("/product-list", { replace: true });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

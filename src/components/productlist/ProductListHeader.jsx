@@ -1,7 +1,7 @@
 import { navItems, languages } from "@/data/globaldata";
 import { FaChevronDown, FaBars, FaTimes, FaCaretDown  } from "react-icons/fa";
 import logoImage from "@/assets/diamond.png";
-import avatarImg  from "@/assets/SE.png";
+import avatarImg  from "@/assets/avatar.jpg";
 
 function ProductListHeader({setMenuOpen, languageRef, setLanguageOpen, selectedLanguage, languageOpen, setSelectedLanguage}) {
     return (

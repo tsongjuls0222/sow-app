@@ -132,6 +132,7 @@ function ProductListPage() {
           description : product.description 
         });
         await fetchData();
+        
         showToast(res.status === 200 ? "Update Product Success" : "Failed.", res.status === 200 ? "success" : "error");
       } catch (error) {
         console.error(error);

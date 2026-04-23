@@ -17,14 +17,14 @@ function ProductListTableMobile({products, EditableField, selectedRowId, setSele
                     </div>
 
                     <div className="mobile-product-col">
-                        <EditableField value={row.productService} onChange={(e) => changeField(row.id, "productService", e.target.value)} fieldClassName="mobile-wide-input"/>
+                        <EditableField value={row.name} onChange={(e) => changeField(row.id, "name", e.target.value)} fieldClassName="mobile-wide-input"/>
                     </div>
 
                     <div className="mobile-price-col">
                         <EditableField value={row.price} onChange={(e) => changeField(row.id, "price", e.target.value)} />
                     </div>
 
-                    <div className="mobile-more-col">{renderRowActions(row.id)}</div>
+                    <div className="mobile-more-col">{renderRowActions(row)}</div>
                 </div>
             ))}
         </div>

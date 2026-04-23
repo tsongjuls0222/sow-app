@@ -23,6 +23,8 @@ import {
   FaCaretDown,
   FaTimes
 } from "react-icons/fa";
+import { useToast } from "@/context/ToastContext";
+import api from "@/api/axios";
 import Toast from "@/components/Toast";
 import ProductListHeader from "@/components/productlist/ProductListHeader";
 import ProductListSideBar from "@/components/productlist/ProductListSideBar";
@@ -45,249 +47,6 @@ const menuItems = [
   { label: "Log out", icon: <FaSignOutAlt />, active: false },
 ];
 
-const initialProducts = [
-  {
-    id: 1,
-    articleNo: "1234567890",
-    productService: "This is a test product with fifty characters this!",
-    inPrice: "900500",
-    price: "1500800",
-    unit: "kilometers/hour",
-    inStock: "2500600",
-    description: "This is the description with fifty characters this",
-  },
-  {
-    id: 2,
-    articleNo: "2234567890",
-    productService: "Sony DSLR 12345",
-    inPrice: "700500",
-    price: "15000",
-    unit: "pieces",
-    inStock: "500000",
-    description: "Second description row sample",
-  },
-  {
-    id: 3,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-    {
-    id: 4,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-    {
-    id: 5,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-    {
-    id: 6,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-    {
-    id: 7,
-    articleNo: "1234567890",
-    productService: "This is a test product with fifty characters this!",
-    inPrice: "900500",
-    price: "1500800",
-    unit: "kilometers/hour",
-    inStock: "2500600",
-    description: "This is the description with fifty characters this",
-  },
-  {
-    id: 8,
-    articleNo: "2234567890",
-    productService: "Sony DSLR 12345",
-    inPrice: "700500",
-    price: "15000",
-    unit: "pieces",
-    inStock: "500000",
-    description: "Second description row sample",
-  },
-  {
-    id: 9,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-    {
-    id: 10,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-    {
-    id: 11,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-    {
-    id: 12,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-    {
-    id: 13,
-    articleNo: "1234567890",
-    productService: "This is a test product with fifty characters this!",
-    inPrice: "900500",
-    price: "1500800",
-    unit: "kilometers/hour",
-    inStock: "2500600",
-    description: "This is the description with fifty characters this",
-  },
-  {
-    id: 14,
-    articleNo: "2234567890",
-    productService: "Sony DSLR 12345",
-    inPrice: "700500",
-    price: "15000",
-    unit: "pieces",
-    inStock: "500000",
-    description: "Second description row sample",
-  },
-  {
-    id: 15,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-    {
-    id: 16,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-    {
-    id: 17,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-    {
-    id: 18,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-    {
-    id: 19,
-    articleNo: "1234567890",
-    productService: "This is a test product with fifty characters this!",
-    inPrice: "900500",
-    price: "1500800",
-    unit: "kilometers/hour",
-    inStock: "2500600",
-    description: "This is the description with fifty characters this",
-  },
-  {
-    id: 20,
-    articleNo: "2234567890",
-    productService: "Sony DSLR 12345",
-    inPrice: "700500",
-    price: "15000",
-    unit: "pieces",
-    inStock: "500000",
-    description: "Second description row sample",
-  },
-  {
-    id: 21,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-    {
-    id: 22,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-    {
-    id: 23,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-    {
-    id: 24,
-    articleNo: "3234567890",
-    productService: "Random product",
-    inPrice: "123",
-    price: "1234",
-    unit: "item",
-    inStock: "9999",
-    description: "Random description",
-  },
-];
-
 function EditableField({ value, onChange, fieldClassName = "" }) {
     return (
         <input className={`cell-input ${fieldClassName}`.trim()} value={value} onChange={onChange} />
@@ -298,18 +57,19 @@ function ProductListPage() {
     const [menuOpen, setMenuOpen]                 = useState(false);
     const [languageOpen, setLanguageOpen]         = useState(false);
     const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
-    const [products, setProducts]                 = useState(initialProducts);
-    const [selectedRowId, setSelectedRowId]       = useState(initialProducts[0].id);
+    const [products, setProducts]                 = useState([]);
+    const [selectedRowId, setSelectedRowId]       = useState(0);
     const [activeRowMenu, setActiveRowMenu]       = useState(null);
     const [activeMenuPos, setActiveMenuPos]       = useState({ top: 0, left: 0 });
     const languageRef                             = useRef(null);
     const actionMenuRef                           = useRef(null);
-    const [toast, setToast]                     = useState(null);
-
-    const showToast = (message, type = "success") => {
-        setToast({ message, type });
-        setTimeout(() => { setToast(null); }, 1500);
-    };
+    const { showToast }                           = useToast();
+    const [loading, setLoading]                   = useState(true);
+    const [update, setUpdate]                     = useState(false);
+    const [filters, setFilters]                   = useState({
+      article_no: "",
+      name: "",
+    });
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -356,9 +116,32 @@ function ProductListPage() {
         setActiveRowMenu(null);
     };
 
-    const handleUpdate = () => {
+    const handleUpdate = async () => {
+      if (update) return;
+      setActiveRowMenu(null);
+      setUpdate(true);
+      try {
+        const product = activeRowMenu;
+        const res = await api.patch(`/product/${product.id}`,{ 
+          article_no : product.article_no, 
+          name : product.name,
+          in_price : product.in_price,
+          price : product.price,  
+          unit : product.unit,
+          stock : product.stock,
+          description : product.description 
+        });
+        showToast(res.status === 200 ? "Update Product Success" : "Failed.", res.status === 200 ? "success" : "error");
+      } catch (error) {
+        console.error(error);
+        showToast(
+          `Update Product Error ${error?.response?.data?.message || error.message}`,
+          "error"
+        );
+      } finally {
         setActiveRowMenu(null);
-        alert("Updated");
+        setUpdate(false);
+      }
     };
 
     const openRowMenu = (event, rowId) => {
@@ -384,21 +167,66 @@ function ProductListPage() {
         setActiveRowMenu((prev) => (prev === rowId ? null : rowId));
     };
 
-    const renderRowActions = (rowId) => (
+    const renderRowActions = (row) => (
         <div className="row-table-menu-wrap">
-            <button type="button" className="row-table-more-btn" onClick={(e) => openRowMenu(e, rowId)} ><FaEllipsisH /></button>
+            <button type="button" className="row-table-more-btn" onClick={(e) => openRowMenu(e, row)} ><FaEllipsisH /></button>
         </div>
     );
 
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const res = await api.get("/product/list", {
+            params: {
+              article_no: filters.article_no,
+              name: filters.name,
+            },
+          });
+
+          const data = res.data?.data || [];
+          setProducts(data);
+          
+
+          showToast(data.length > 0 ? "Get Products Success" : "No result found.", data.length > 0 ? "success" : "error");
+        } catch (error) {
+          console.error(error);
+          showToast(
+            `Get Products Error ${error?.response?.data?.message || error.message}`,
+            "error"
+          );
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchData();
+    }, [filters]);
+
+    useEffect(() => {
+        const handleResizeOrScroll = () => {
+            if (window.innerWidth > 1202) {
+                setMenuOpen(false);
+            }
+            setActiveRowMenu(null);
+        };
+
+        window.addEventListener("resize", handleResizeOrScroll);
+        window.addEventListener("scroll", handleResizeOrScroll, true);
+
+        return () => {
+            window.removeEventListener("resize", handleResizeOrScroll);
+            window.removeEventListener("scroll", handleResizeOrScroll, true);
+        };
+    }, []);
+
     return (
         <div className="productlist-page">
-            <Toast toast={toast} onClose={() => setToast(null)} />
             <ProductListHeader setMenuOpen={setMenuOpen} languageRef={languageRef} setLanguageOpen={setLanguageOpen} selectedLanguage={selectedLanguage} languageOpen={languageOpen} setSelectedLanguage={setSelectedLanguage} />
             <div className="productlist-body">
                 <ProductListSideBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} menuItems={menuItems} />
                 <main className="productlist-content">
                     <div className="productlist-inner">
-                        <ProductListToolBar />
+                        <ProductListToolBar filters={filters} setFilters={setFilters}/>
                         <ProductListTableDesktop products={products} EditableField={EditableField} selectedRowId={selectedRowId} setSelectedRowId={setSelectedRowId} changeField={changeField} renderRowActions={renderRowActions}/>
                         <ProductListTableTablet products={products} EditableField={EditableField} selectedRowId={selectedRowId} setSelectedRowId={setSelectedRowId} changeField={changeField} renderRowActions={renderRowActions}/>
                         <ProductListTableMobile products={products} EditableField={EditableField} selectedRowId={selectedRowId} setSelectedRowId={setSelectedRowId} changeField={changeField} renderRowActions={renderRowActions}/>
@@ -411,7 +239,7 @@ function ProductListPage() {
                     <button type="button" aria-label="Close actions" className="row-action-upd-del-overlay" onClick={() => setActiveRowMenu(null)} />
                     <div className="row-action-upd-del-menu fixed-menu" style={{ top: `${activeMenuPos.top}px`, left: `${activeMenuPos.left}px` }} ref={actionMenuRef} >
                         <button type="button" className="row-action-upd-del-btn update-product-btn" onClick={handleUpdate}>Update</button>
-                        <button type="button" className="row-action-upd-del-btn delete-product-btn" onClick={() => handleDelete(activeRowMenu)}>Delete</button>
+                        <button type="button" className="row-action-upd-del-btn delete-product-btn" onClick={() => handleDelete(activeRowMenu.id)}>Delete</button>
                     </div>
                 </>
             )}

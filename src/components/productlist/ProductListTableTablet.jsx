@@ -26,13 +26,13 @@ function ProductListTableTablet({products, EditableField, selectedRowId, setSele
                     </div>
 
                     <EditableField
-                        value={row.articleNo}
-                        onChange={(e) => changeField(row.id, "articleNo", e.target.value)}
+                        value={row.article_no}
+                        onChange={(e) => changeField(row.id, "article_no", e.target.value)}
                     />
 
                     <EditableField
-                        value={row.productService}
-                        onChange={(e) => changeField(row.id, "productService", e.target.value)}
+                        value={row.name}
+                        onChange={(e) => changeField(row.id, "name", e.target.value)}
                     />
 
                     <EditableField
@@ -41,8 +41,8 @@ function ProductListTableTablet({products, EditableField, selectedRowId, setSele
                     />
 
                     <EditableField
-                        value={row.inStock}
-                        onChange={(e) => changeField(row.id, "inStock", e.target.value)}
+                        value={row.stock}
+                        onChange={(e) => changeField(row.id, "stock", e.target.value)}
                     />
 
                     <div className="tablet-unit-actions">
@@ -50,7 +50,7 @@ function ProductListTableTablet({products, EditableField, selectedRowId, setSele
                             value={row.unit}
                             onChange={(e) => changeField(row.id, "unit", e.target.value)}
                         />
-                        {renderRowActions(row.id)}
+                        {renderRowActions(row)}
                     </div>
                 </div>
             ))}

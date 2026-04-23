@@ -1,17 +1,33 @@
 import { FaSlidersH, FaSearch , FaPlusCircle, FaPrint  } from "react-icons/fa";
 
-function ProductListToolBar() {
+function ProductListToolBar({filters, setFilters}) {
     return (
         <div className="productlist-toolbar-sticky">
             <div className="productlist-toolbar">
                 <div className="productlist-search-group">
                 <div className="productlist-search-box">
-                    <input type="text" placeholder="Search Article No..." />
+                    <input type="text" placeholder="Search Article No..." 
+                        value={filters.article_no}
+                        onChange={(e) =>
+                            setFilters((prev) => ({
+                                ...prev,
+                                article_no: e.target.value,
+                            }))
+                        }
+                    />
                     <span className="productlist-search-icon"><FaSearch  /></span>
                 </div>
 
                 <div className="productlist-search-box">
-                    <input type="text" placeholder="Search Product..." />
+                    <input type="text" placeholder="Search Product..." 
+                        value={filters.name}
+                        onChange={(e) =>
+                            setFilters((prev) => ({
+                                ...prev,
+                                name: e.target.value,
+                            }))
+                        }
+                    />
                     <span className="productlist-search-icon"><FaSearch  /></span>
                 </div>
                 </div>

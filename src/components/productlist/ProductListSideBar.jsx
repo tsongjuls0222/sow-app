@@ -2,8 +2,10 @@ import { navItems, languages } from "@/data/globaldata";
 import { FaChevronDown, FaBars, FaTimes, FaCaretDown  } from "react-icons/fa";
 import logoImage from "@/assets/diamond.png";
 import avatarImg  from "@/assets/SE.png";
+import { useAuth } from "@/context/useAuth";
 
 function ProductListSideBar({menuOpen, setMenuOpen, menuItems}) {
+    const { logout } = useAuth();
     return (
         <>
             <aside className={`productlist-sidebar ${menuOpen ? "open" : ""}`}>
@@ -14,7 +16,7 @@ function ProductListSideBar({menuOpen, setMenuOpen, menuItems}) {
                 <div className="productlist-sidebar-line" />
                 <nav className="productlist-menu">
                     {menuItems.map((item) => (
-                        <button type="button" key={item.label} className={`productlist-menu-item ${item.active ? "active" : ""} ${item.muted ? "muted" : ""}`}>
+                        <button type="button" key={item.label} className={`productlist-menu-item ${item.active ? "active" : ""} ${item.muted ? "muted" : ""}`} onClick={item.label === "Log out" ? logout : undefined}>
                             <span className="productlist-menu-icon">{item.icon}</span>
                             <span className="productlist-menu-text">{item.label}</span>
                         </button>

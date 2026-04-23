@@ -131,6 +131,7 @@ function ProductListPage() {
           stock : product.stock,
           description : product.description 
         });
+        await fetchData();
         showToast(res.status === 200 ? "Update Product Success" : "Failed.", res.status === 200 ? "success" : "error");
       } catch (error) {
         console.error(error);
@@ -173,32 +174,32 @@ function ProductListPage() {
         </div>
     );
 
+    const fetchData = async () => {
+      try {
+        const res = await api.get("/product/list", {
+          params: {
+            article_no: filters.article_no,
+            name: filters.name,
+          },
+        });
+
+        const data = res.data?.data || [];
+        setProducts(data);
+        
+
+        showToast(data.length > 0 ? "Get Products Success" : "No result found.", data.length > 0 ? "success" : "error");
+      } catch (error) {
+        console.error(error);
+        showToast(
+          `Get Products Error ${error?.response?.data?.message || error.message}`,
+          "error"
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
     useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const res = await api.get("/product/list", {
-            params: {
-              article_no: filters.article_no,
-              name: filters.name,
-            },
-          });
-
-          const data = res.data?.data || [];
-          setProducts(data);
-          
-
-          showToast(data.length > 0 ? "Get Products Success" : "No result found.", data.length > 0 ? "success" : "error");
-        } catch (error) {
-          console.error(error);
-          showToast(
-            `Get Products Error ${error?.response?.data?.message || error.message}`,
-            "error"
-          );
-        } finally {
-          setLoading(false);
-        }
-      };
-
       fetchData();
     }, [filters]);
 

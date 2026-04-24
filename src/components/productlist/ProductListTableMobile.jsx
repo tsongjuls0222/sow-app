@@ -1,6 +1,6 @@
 import { FaArrowRight, FaArrowDown } from "react-icons/fa";
 
-function ProductListTableMobile({products, EditableField, selectedRowId, setSelectedRowId, changeField, renderRowActions}) {
+function ProductListTableMobile({products, EditableField, selectedRowId, setSelectedRowId, changeField, saveField, renderRowActions}) {
     return (
         <div className="my-table-mobile">
             <div className="mobile-my-table-header">
@@ -17,11 +17,25 @@ function ProductListTableMobile({products, EditableField, selectedRowId, setSele
                     </div>
 
                     <div className="mobile-product-col">
-                        <EditableField value={row.name} onChange={(e) => changeField(row.id, "name", e.target.value)} fieldClassName="mobile-wide-input"/>
+                        <EditableField
+                            row={row}
+                            id={row.id}
+                            field="name"
+                            value={row.name}
+                            onChange={(value) => changeField(row.id, "name", value)}
+                            onSave={saveField}
+                        />
                     </div>
 
                     <div className="mobile-price-col">
-                        <EditableField value={row.price} onChange={(e) => changeField(row.id, "price", e.target.value)} />
+                        <EditableField
+                            row={row}
+                            id={row.id}
+                            field="price"
+                            value={row.price}
+                            onChange={(value) => changeField(row.id, "price", value)}
+                            onSave={saveField}
+                        />
                     </div>
 
                     <div className="mobile-more-col">{renderRowActions(row)}</div>

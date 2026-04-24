@@ -7,7 +7,7 @@ import {
   FaArrowDown 
 } from "react-icons/fa";
 
-function ProductListTableDesktop({products, EditableField, selectedRowId, setSelectedRowId, changeField, renderRowActions}) {
+function ProductListTableDesktop({products, EditableField, selectedRowId, setSelectedRowId, changeField, saveField, renderRowActions}) {
     return (
         <div className="my-table-desktop">
             <div className="desktop-my-table-header">
@@ -29,39 +29,67 @@ function ProductListTableDesktop({products, EditableField, selectedRowId, setSel
                     </div>
 
                     <EditableField
+                        row={row}
+                        id={row.id}
+                        field="article_no"
                         value={row.article_no}
-                        onChange={(e) => changeField(row.id, "article_no", e.target.value)}
+                        onChange={(value) => changeField(row.id, "article_no", value)}
+                        onSave={saveField}
                     />
 
                     <EditableField
+                        row={row}
+                        id={row.id}
+                        field="name"
                         value={row.name}
-                        onChange={(e) => changeField(row.id, "name", e.target.value)}
+                        onChange={(value) => changeField(row.id, "name", value)}
+                        onSave={saveField}
                         fieldClassName="wide-cell"
                     />
 
                     <EditableField
+                        row={row}
+                        id={row.id}
+                        field="in_price"
                         value={row.in_price}
-                        onChange={(e) => changeField(row.id, "in_price", e.target.value)}
+                        onChange={(value) => changeField(row.id, "in_price", value)}
+                        onSave={saveField}
                     />
 
                     <EditableField
+                        row={row}
+                        id={row.id}
+                        field="price"
                         value={row.price}
-                        onChange={(e) => changeField(row.id, "price", e.target.value)}
+                        onChange={(value) => changeField(row.id, "price", value)}
+                        onSave={saveField}
                     />
 
                     <EditableField
+                        row={row}
+                        id={row.id}
+                        field="unit"
                         value={row.unit}
-                        onChange={(e) => changeField(row.id, "unit", e.target.value)}
+                        onChange={(value) => changeField(row.id, "unit", value)}
+                        onSave={saveField}
                     />
 
                     <EditableField
+                        row={row}
+                        id={row.id}
+                        field="stock"
                         value={row.stock}
-                        onChange={(e) => changeField(row.id, "stock", e.target.value)}
+                        onChange={(value) => changeField(row.id, "stock", value)}
+                        onSave={saveField}
                     />
 
                     <EditableField
+                        row={row}
+                        id={row.id}
+                        field="description"
                         value={row.description}
-                        onChange={(e) => changeField(row.id, "description", e.target.value)}
+                        onChange={(value) => changeField(row.id, "description", value)}
+                        onSave={saveField}
                         fieldClassName="wide-cell"
                     />
 

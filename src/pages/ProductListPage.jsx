@@ -32,6 +32,7 @@ import ProductListToolBar from "@/components/productlist/ProductListToolBar";
 import ProductListTableDesktop from "@/components/productlist/ProductListTableDesktop";
 import ProductListTableTablet from "@/components/productlist/ProductListTableTablet";
 import ProductListTableMobile from "@/components/productlist/ProductListTableMobile";
+import EditableField from "@/components/productlist/EditableField";
 
 const menuItems = [
   { label: "Invoices", icon: <FaFileInvoice />, active: false },
@@ -46,12 +47,6 @@ const menuItems = [
   { label: "Import/Export", icon: <FaCloudUploadAlt />, active: false },
   { label: "Log out", icon: <FaSignOutAlt />, active: false },
 ];
-
-function EditableField({ value, onChange, fieldClassName = "" }) {
-    return (
-        <input className={`cell-input ${fieldClassName}`.trim()} value={value} onChange={onChange} />
-    );
-}
 
 function ProductListPage() {
     const [menuOpen, setMenuOpen]                 = useState(false);
@@ -117,33 +112,48 @@ function ProductListPage() {
     };
 
     const handleUpdate = async () => {
-      if (update) return;
-      setActiveRowMenu(null);
-      setUpdate(true);
-      try {
-        const product = activeRowMenu;
-        const res = await api.patch(`/product/${product.id}`,{ 
-          article_no : product.article_no, 
-          name : product.name,
-          in_price : product.in_price,
-          price : product.price,  
-          unit : product.unit,
-          stock : product.stock,
-          description : product.description 
-        });
-        await fetchData();
-        
-        showToast(res.status === 200 ? "Update Product Success" : "Failed.", res.status === 200 ? "success" : "error");
-      } catch (error) {
-        console.error(error);
-        showToast(
-          `Update Product Error ${error?.response?.data?.message || error.message}`,
-          "error"
-        );
-      } finally {
+        if (update) return;
         setActiveRowMenu(null);
-        setUpdate(false);
-      }
+        setUpdate(true);
+        try {
+            const product = activeRowMenu;
+            const res = await api.patch(`/product/${product.id}`,{ 
+                article_no : product.article_no, 
+                name : product.name,
+                in_price : product.in_price,
+                price : product.price,  
+                unit : product.unit,
+                stock : product.stock,
+                description : product.description 
+            });
+            await fetchData();
+            
+            showToast(res.status === 200 ? "Update Product Success" : "Failed.", res.status === 200 ? "success" : "error");
+        } catch (error) {
+            console.error(error);
+            showToast(`Update Product Error ${error?.response?.data?.message || error.message}`,"error");
+        } finally {
+            setActiveRowMenu(null);
+            setUpdate(false);
+        }
+    };
+
+    const saveField = async (row, id, key, value) => {
+        try {
+            const res = await api.patch(`/product/${id}`, {
+                article_no: row.article_no,
+                name: row.name,
+                in_price: row.in_price,
+                price: row.price,
+                unit: row.unit,
+                stock: row.stock,
+                description: row.description
+            });
+            showToast(res.status === 200 ? "Update Product Success" : "Failed.", res.status === 200 ? "success" : "error");
+        } catch (error) {
+            console.error(error);
+            showToast(`Update Product Error ${error?.response?.data?.message || error.message}`,"error");
+        }
     };
 
     const openRowMenu = (event, rowId) => {
@@ -204,6 +214,7 @@ function ProductListPage() {
       fetchData();
     }, [filters]);
 
+
     useEffect(() => {
         const handleResizeOrScroll = () => {
             if (window.innerWidth > 1202) {
@@ -221,6 +232,7 @@ function ProductListPage() {
         };
     }, []);
 
+
     return (
         <div className="productlist-page">
             <ProductListHeader setMenuOpen={setMenuOpen} languageRef={languageRef} setLanguageOpen={setLanguageOpen} selectedLanguage={selectedLanguage} languageOpen={languageOpen} setSelectedLanguage={setSelectedLanguage} />
@@ -229,9 +241,9 @@ function ProductListPage() {
                 <main className="productlist-content">
                     <div className="productlist-inner">
                         <ProductListToolBar filters={filters} setFilters={setFilters}/>
-                        <ProductListTableDesktop products={products} EditableField={EditableField} selectedRowId={selectedRowId} setSelectedRowId={setSelectedRowId} changeField={changeField} renderRowActions={renderRowActions}/>
-                        <ProductListTableTablet products={products} EditableField={EditableField} selectedRowId={selectedRowId} setSelectedRowId={setSelectedRowId} changeField={changeField} renderRowActions={renderRowActions}/>
-                        <ProductListTableMobile products={products} EditableField={EditableField} selectedRowId={selectedRowId} setSelectedRowId={setSelectedRowId} changeField={changeField} renderRowActions={renderRowActions}/>
+                        <ProductListTableDesktop products={products} EditableField={EditableField} selectedRowId={selectedRowId} setSelectedRowId={setSelectedRowId} changeField={changeField}  saveField={saveField} renderRowActions={renderRowActions}/>
+                        <ProductListTableTablet products={products} EditableField={EditableField} selectedRowId={selectedRowId} setSelectedRowId={setSelectedRowId} changeField={changeField} saveField={saveField} renderRowActions={renderRowActions}/>
+                        <ProductListTableMobile products={products} EditableField={EditableField} selectedRowId={selectedRowId} setSelectedRowId={setSelectedRowId} changeField={changeField} saveField={saveField} renderRowActions={renderRowActions}/>
                     </div>
                 </main>
             </div>
